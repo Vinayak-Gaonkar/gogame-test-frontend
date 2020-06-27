@@ -1,0 +1,33 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+    <form #form="ngForm">
+        <ng-container *ngIf="action != 'Delete'; else elseTemplate">
+            <mat-form-field>
+                <input placeholder="{{action}} game name" required=true matInput [(ngModel)]="local_data.gameName"
+                    name="gameName">
+            </mat-form-field>
+            <mat-form-field>
+                <input required=true placeholder="{{action}} user name" matInput [(ngModel)]="local_data.userName"
+                    name="userName">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput required=true [matDatepicker]="picker" placeholder="Choose a date"
+                    [(ngModel)]="local_data.date" name="date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+                <input required=true placeholder="{{action}} score" matInput [(ngModel)]="local_data.score"
+                    name="score">
+            </mat-form-field>
+        </ng-container>
+        <ng-template #elseTemplate>
+            Sure to delete <b>{{local_data.gameName}}</b>?
+        </ng-template>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button [disabled]="form.invalid" (click)="doAction()">{{action}}</button>
+    <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>
