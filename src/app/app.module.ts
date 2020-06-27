@@ -17,7 +17,8 @@ import {
   MatButtonModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSortModule
 } from '@angular/material';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { HttpService } from './service/http.service';
@@ -40,7 +41,8 @@ import { HttpService } from './service/http.service';
     HttpClientModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSortModule
   ],
   entryComponents: [
     DialogBoxComponent,

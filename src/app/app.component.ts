@@ -5,6 +5,9 @@ import { MatDialog, MatTable } from '@angular/material';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { HttpService } from './service/http.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+
 
 
 export class GameData {
@@ -29,14 +32,18 @@ export class GameData {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  displayedColumns: string[] = ['Id', 'Name', 'User', "Date", "Score", "Action"];
-  dataSource: GameData[];
+  displayedColumns: string[] = ['Id', 'Name', 'User', "Date", "score", "Action"];
+  dataSource=new MatTableDataSource();
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(public dialog: MatDialog, public httpService: HttpService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    console.log(this.sort);
+    
+    this.dataSource.sort = this.sort;
     this.getAllGames()
   }
 
@@ -47,7 +54,7 @@ export class AppComponent {
         res.payload.forEach(element => {
           const check = new GameData(element)
           payload.push(check)
-          this.dataSource = payload
+          this.dataSource.data = payload
         });
       }
 

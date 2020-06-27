@@ -7,7 +7,7 @@
 
   <button mat-button (click)="openDialog('Add',{})" mat-flat-button color="primary">Add Row</button>
 
-  <table mat-table [dataSource]="dataSource" #mytable class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort #mytable class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
@@ -29,8 +29,8 @@
       <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="Score">
-      <th mat-header-cell *matHeaderCellDef> Score </th>
+    <ng-container matColumnDef="score">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Score </th>
       <td mat-cell *matCellDef="let element"> {{element.score}} </td>
     </ng-container>
 
